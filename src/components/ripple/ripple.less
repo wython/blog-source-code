@@ -1,45 +1,45 @@
 @import "../customer.less";
 @import "./animate.less";
+
 @ripple-prefix-class: ~"@{css-prefix}-ripple";
 
-
-.@{ripple-prefix-class}-wrapper{
+.@{ripple-prefix-class}-wrapper {
   position: relative;
 }
 
 .@{ripple-prefix-class}-wrapper .c-1,
 .@{ripple-prefix-class}-wrapper .c-2,
-.@{ripple-prefix-class}-wrapper .c-3{
+.@{ripple-prefix-class}-wrapper .c-3 {
   opacity: 0;
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.@{ripple-prefix-class}-animated{
+.@{ripple-prefix-class}-animated {
   //animation-duration: .5s;
   //animation-fill-mode: both;
 }
 
 .@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-1,
 .@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-2,
-.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3{
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3 {
   opacity: 0.25;
   border-radius: 100%;
 }
 
-.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-1{
-  animation: 2000ms scaleToggleOne cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-1 {
+  animation: 2000ms scaleToggleOne cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-iteration-count: infinite;
 }
 
-.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-2{
-  animation: 2500ms scaleToggleTwo cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-2 {
+  animation: 2500ms scaleToggleTwo cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-iteration-count: infinite;
 }
 
-.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3{
-  animation: 3500ms scaleToggleThree cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3 {
+  animation: 3500ms scaleToggleThree cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-iteration-count: infinite;
 }
 

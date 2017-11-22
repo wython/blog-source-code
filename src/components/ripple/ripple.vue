@@ -1,5 +1,5 @@
 <template>
-  <div ref="ripple" :style="{ background: wrapperBg }" :class="rippleCls">
+  <div ref="ripple" :class="rippleCls">
     <div :style="circleStyle" :class='"c-1"'>
 
     </div>
@@ -32,10 +32,11 @@
         width: 100,
         height: 100,
         bgColor: '#2789e9',
-        wrapperBg: '#2789e9'
+        wrapperBg: ''
       }
     },
     computed: {
+      //波纹动态样式
       circleStyle() {
         return {
           backgroundColor: this.bgColor,
@@ -43,6 +44,8 @@
           height: this.height + 'px'
         }
       },
+
+      //波纹外层类
       rippleCls() {
         return  [{
           [`${ripplePrefixCls}-animated`]: this.loading
@@ -55,8 +58,9 @@
 
       //获得wrapper元素背景颜色
       this.bgColor = getBg(wrapperEle);
-      //this.wrapperBg = 'transparent';
+      this.wrapperBg = 'transparent';
 
+      wrapperEle.setAttribute('style',  `background-color:${this.wrapperBg};${wrapperEle.getAttribute('style')} || ''`)
       //获得wrapper元素的width，height
       this.width = wrapperEle.clientWidth;
       this.height = wrapperEle.clientHeight;

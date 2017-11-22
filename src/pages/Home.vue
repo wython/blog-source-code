@@ -28,9 +28,10 @@
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  .home {
+    height: 100%;
+  }
   .my-rapple{
-    width: 50px;
-    height: 50px;
-    background: #91bce9;
+    background: #d8c9d6;
   }
 </style>
