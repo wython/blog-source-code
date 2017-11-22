@@ -27,7 +27,8 @@
     },
     mounted() {
       new Drag(this.$refs.testDrag, {
-          dragType: 'all',
+          dragType: 'x',
+
         })
         .on('beforeMove', function (e) {
           console.log('before move')
@@ -51,6 +52,7 @@
     height: 100px;
   }
   .drag-container{
+    position: fixed;
     height: 200px;
     background: cornflowerblue;
   }
