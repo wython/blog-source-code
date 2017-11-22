@@ -13,6 +13,7 @@ import {getReTop, getReLeft, getStyle, getEle} from './position';
  * @param e
  */
 function onMouseDown(e) {
+  e.preventDefault();
   this.flat = true;
   this.currentX = e.clientX;  //鼠标位置
   this.currentY = e.clientY;
@@ -32,6 +33,7 @@ function onMouseUp(e) {
   this.flat = false;
   this.currentLeft = this.getLeft();
   this.currentTop = this.getTop();
+
   this.upFn.forEach((fn) => {
     fn(e);
   })

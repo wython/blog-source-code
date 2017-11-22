@@ -28,7 +28,6 @@
     mounted() {
       new Drag(this.$refs.testDrag, {
           dragType: 'all',
-          fixed: false
         })
         .on('beforeMove', function (e) {
           console.log('before move')
