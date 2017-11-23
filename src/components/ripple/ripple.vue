@@ -1,12 +1,18 @@
 <template>
   <div ref="ripple" :class="rippleCls">
-    <div :style="circleStyle" :class='"c-1"'>
+    <div class="slot">
+      <slot></slot>
+    </div>
+    <div :style="circleStyle" class='c-1'>
 
     </div>
-    <div :style="circleStyle" :class='"c-2"'>
+    <div :style="circleStyle" class='c-2'>
 
     </div>
-    <div :style="circleStyle" :class='"c-3"'>
+    <div :style="circleStyle" class='c-3'>
+
+    </div>
+    <div :style="circleStyle" class='c-4'>
 
     </div>
   </div>
@@ -58,9 +64,9 @@
 
       //获得wrapper元素背景颜色
       this.bgColor = getBg(wrapperEle);
-      this.wrapperBg = 'transparent';
+      //this.wrapperBg = 'transparent';
 
-      wrapperEle.setAttribute('style',  `background-color:${this.wrapperBg};${wrapperEle.getAttribute('style')} || ''`)
+      wrapperEle.setAttribute('style',  `background-color:${this.wrapperBg};${wrapperEle.getAttribute('style') || ''}`)
       //获得wrapper元素的width，height
       this.width = wrapperEle.clientWidth;
       this.height = wrapperEle.clientHeight;

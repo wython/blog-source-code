@@ -7,9 +7,18 @@
   position: relative;
 }
 
+
+.@{ripple-prefix-class}-wrapper .slot{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .@{ripple-prefix-class}-wrapper .c-1,
 .@{ripple-prefix-class}-wrapper .c-2,
-.@{ripple-prefix-class}-wrapper .c-3 {
+.@{ripple-prefix-class}-wrapper .c-3,
+.@{ripple-prefix-class}-wrapper .c-4,
+.@{ripple-prefix-class}-wrapper .c-5 {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -23,7 +32,9 @@
 
 .@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-1,
 .@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-2,
-.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3 {
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-3,
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-4,
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-5 {
   opacity: 0.25;
   border-radius: 100%;
 }
@@ -42,5 +53,16 @@
   animation: 3500ms scaleToggleThree cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   animation-iteration-count: infinite;
 }
+
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-4 {
+  animation: 4000ms scaleToggleThree cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-iteration-count: infinite;
+}
+
+.@{ripple-prefix-class}-wrapper.@{ripple-prefix-class}-animated .c-5 {
+  animation: 4500ms scaleToggleThree cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-iteration-count: infinite;
+}
+
 
 
