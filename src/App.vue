@@ -3,15 +3,7 @@
     <div class="drag-container" ref="dragContainer">
       <div ref="testDrag" class="test-drag"></div>
     </div>
-    <p>
-      sdfsdfs
-      sdfsdf
-      sdfsdfsd
-      sdfsdf
-      sdfsdf
-      sdfsdf
-      sdfsf
-    </p>
+
     <router-view/>
   </div>
 </template>
@@ -27,8 +19,9 @@
     },
     mounted() {
       new Drag(this.$refs.testDrag, {
-          dragType: 'x',
-
+          dragType: 'all',
+          fixed: true,
+          top: 300,
         })
         .on('beforeMove', function (e) {
           console.log('before move')
@@ -53,6 +46,8 @@
   }
   .drag-container{
     position: fixed;
+    top: 200px;
+    left: 200px;
     height: 200px;
     background: cornflowerblue;
   }

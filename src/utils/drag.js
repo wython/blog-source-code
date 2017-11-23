@@ -129,7 +129,7 @@ Drag.prototype.initPosition = function () {
     this.currentTop = this.container.offsetTop;
     this.currentLeft = this.container.offsetLeft
   }
-  this.setPosition(this.currentTop, this.currentLeft);
+  this.setPosition(this.currentLeft, this.currentTop);
 };
 
 Drag.prototype.on = function (eventType, cb) {

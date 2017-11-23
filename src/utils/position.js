@@ -77,7 +77,7 @@ function getDistance(ele, position) {
   ele = getEle(ele);
   position = position.replace(position.charAt(0), position.charAt(0).toUpperCase());
 
-  let distanceKey = 'offset' +position;
+  let distanceKey = 'offset' + position;
   let current = ele.offsetParent;
 
   let distance = getEle(ele)[distanceKey];
