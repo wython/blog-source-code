@@ -1,7 +1,6 @@
 <template>
   <div class="article-list-wrapper">
     <ArticleItem/>
-    <ArticleItem/>
   </div>
 </template>
 <script>

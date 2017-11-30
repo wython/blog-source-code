@@ -6,6 +6,7 @@
 
 
 /**
+ * check element
  * 判断ele
  * @param ele
  * @return {*}
@@ -18,7 +19,7 @@ export function getEle(ele) {
 
 
 /**
- *
+ * get element style by js
  * 通过js获取元素样式
  *
  * @param ele
@@ -35,7 +36,8 @@ export function getStyle(ele, key) {
 
 /**
  *
- *
+ * get Element background color, first, get the style inline,
+ * and then, get thought computed style
  * 获取元素的背景颜色，先获取行内元素，在获取计算样式
  *
  * @param ele {DomElement|String}
@@ -48,7 +50,7 @@ export function getBg(ele) {
 
 /**
  *
- *
+ * computed the element view port
  * 获取页面可视区域大小
  * @return {{width: number, height: number}}
  */
