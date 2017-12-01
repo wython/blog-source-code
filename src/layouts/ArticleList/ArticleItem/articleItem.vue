@@ -4,7 +4,8 @@
       如何最好的使用javascript
     </h2>
     <p class="article-mess">
-      <span class="date-line">Sep 24, 2017</span>
+      <span class="date-line">Sep 24, 2017 | <span class="icon eye"></span> 阅读数 1230</span>
+
     </p>
     <img style="width: 100%" src="http://notes.iissnan.com/uploads/next-documentations-reload/brand-new.png"/>
     <p class="article-preview">
@@ -22,6 +23,7 @@
     <span class="article-more icon">
       MORE <span class="icon"></span>
     </span>
+    <span class="bottom-line clear"></span>
   </article>
 </template>
 <script>
@@ -38,11 +40,22 @@
     .article-mess {
      display: flex;
       justify-content: center;
-
-    .date-line {
       color: rgba(31,31,31,.5);
       font-weight: 100;
+      font-size: 14px;
+    .date-line {
+
     }
+    .eye:before {
+      content: '\e9ce';
+    }
+
+  }
+  .bottom-line{
+    width: 50px;
+    /*border-bottom: 1px solid #dddddd;*/
+    display: block;
+    margin: 20px auto;
   }
 
   .article-more {
