@@ -1,5 +1,15 @@
 <template>
   <div id="article-content">
+    <h1>
+      前端大杂烩
+    </h1>
+    <p>
+      test blog
+    </p>
+    <p>
+      文章内容
+    </p>
+
     <pre>
       <code>
         var a = 1;

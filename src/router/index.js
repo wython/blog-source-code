@@ -7,6 +7,7 @@ import Tags from '@/pages/Tags';
 import About from '@/pages/About';
 import Archive from '@/pages/Archive';
 import Page404 from '@/pages/Page404'
+import Article from '@/pages/Article';
 
 Vue.use(Router);
 
@@ -36,7 +37,7 @@ export default new Router({
     {
       path: '/article/:id',
       name: 'article',
-      component: Archive
+      component: Article
     },
     {
       path: '*',
