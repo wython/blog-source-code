@@ -26,7 +26,7 @@ export function getEle(ele) {
  */
 export function getStyle(ele, key) {
   ele = getEle(ele);
-  if (ele.style && ele.style[key]) return ele.style.backgroundColor;
+  if (ele.style && ele.style[key]) return ele.style.backgroundColor;     //形内样式
   let eleStyle = window.getComputedStyle ? window.getComputedStyle(ele) : ele.currentStyle;
   return eleStyle ? eleStyle[key] : false;
 }
@@ -38,7 +38,7 @@ export function getStyle(ele, key) {
  * and then, get thought computed style
  * 获取元素的背景颜色，先获取行内元素，在获取计算样式
  *
- * @param ele {DomElement|String}
+ * @param ele {Element|String}
  * @return {String|Boolean}
  */
 export function getBg(ele) {

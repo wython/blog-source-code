@@ -33,6 +33,10 @@ class LazyImage {
 
   };
 
+  /**
+   * 是否进行毛玻璃处理
+   * @param img
+   */
   glassImageLoading = img => {
     let miniImage = document.createElement('img');
     img.src = this.getMinImgSrc(img.dataset.src);
