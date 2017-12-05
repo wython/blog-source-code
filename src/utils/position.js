@@ -94,7 +94,7 @@ function getDistance(ele, position) {
  * @param ele
  * @return {*}
  */
-function getAbLeft(ele) {
+export function getAbLeft(ele) {
   return getDistance(ele, 'Left')
 }
 
@@ -103,7 +103,7 @@ function getAbLeft(ele) {
  * @param ele
  * @return {*}
  */
-function getAbTop(ele) {
+export function getAbTop(ele) {
   return getDistance(ele, 'Top')
 }
 
@@ -115,11 +115,11 @@ function getAbTop(ele) {
  * @return {{top: *, left: *}}
  */
 export function absolutePosition(ele) {
-  let quick = this.getBoundingClientRect();
+  let quick = ele.getBoundingClientRect();
 
   return {
     top: quick ? quick.top : getAbTop(ele),
-    left:quick ? quick.left : getAbLeft(ele)
+    left: quick ? quick.left : getAbLeft(ele)
   }
 }
 

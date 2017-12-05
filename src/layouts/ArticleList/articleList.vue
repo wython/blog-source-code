@@ -1,15 +1,20 @@
 <template>
-  <div class="article-list-wrapper">
+  <div ref="articleList" class="article-list-wrapper">
     <ArticleItem/>
     <ArticleItem/>
   </div>
 </template>
 <script>
   import ArticleItem from './ArticleItem';
+  import Lazy from '@/utils/lazyImage';
+
   export default {
     name: 'articleList',
     components: {
         ArticleItem
+    },
+    mounted() {
+      new Lazy(this.$refs.articleList).start();
     }
   }
 </script>

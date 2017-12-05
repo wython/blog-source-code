@@ -1,36 +1,67 @@
 /**
  * Created by wython on 2017/12/1.
  */
-import {getEle} from './position';
+import * as position from './position';
 
-//缩略图load事件挂载回调
+/**
+ * 节流函数
+ * @param fn
+ * @param delay
+ */
+function throttle(fn, delay = 500) {
+  let timeoutId = null;
+  return () => {
+    if(timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(fn, delay);
+  };
+}
+
+// 缩略图load事件挂载回调
 function miniImageLoad() {
 
 }
 
-//原image load事件挂载回调
-function imageLoad() {
 
-}
+const onScroll = throttle(() => {
+  console.log(1)
+});
 
-class LazyImage {
+
+/**
+ *
+ * opt = { glass, miniSrc = (src) => { return '' },   }
+ *
+ */
+export default class LazyImage {
   constructor(target, opt) {
-    this.target = getEle(target);
-
+    this.target = position.getEle(target);
+    this.images =  Array.prototype.slice.call(this.target.getElementsByTagName('img'));
   }
 
   start = () => {
-    let images = this.target.getElementsByTagName('img');
+    images.forEach((img) => {
+      // 预加载缩略图
+      let miniImg = window.createElement('img');
+      miniImg.style.position = 'absolute';
+      miniImg.style.top
+    });
 
-    Array.prototype.forEach.call(images, (img, i) => {
-      //启动毛玻璃效果
+    window.addEventListener('scroll', throttle(this.bindScroll.bind(this)));
+
+    Array.prototype.forEach.call(images, (img) => {
+      // 启动毛玻璃效果
       this.miniImgSrc && this.opt.glass && this.glassImageLoading(img);
-      this.bindScroll(img);
     })
   };
 
-  bindScroll = img => {
+  bindScroll = () => {
+    console.log(this)
+  };
 
+  clear = () => {
+    window.removeEventListener('scroll', this.bindScroll);
   };
 
   /**
