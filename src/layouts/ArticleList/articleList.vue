@@ -6,7 +6,7 @@
 </template>
 <script>
   import ArticleItem from './ArticleItem';
-  import Lazy from '@/utils/lazyImage';
+  import Lazy from '@/utils/lazyImage/index';
 
   export default {
     name: 'articleList',
@@ -14,7 +14,11 @@
         ArticleItem
     },
     mounted() {
-      new Lazy(this.$refs.articleList).start();
+      new Lazy(this.$refs.articleList, {
+        miniSrc: (src) => {
+          return src;
+        }
+      }).start();
     }
   }
 </script>

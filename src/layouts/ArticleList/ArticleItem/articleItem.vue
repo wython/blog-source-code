@@ -7,7 +7,7 @@
       <span class="date-line">Sep 24, 2017 | <span class="icon eye"></span> 阅读数 1230</span>
 
     </p>
-    <img style="width: 100%" src="http://notes.iissnan.com/uploads/next-documentations-reload/brand-new.png"/>
+    <img style="width: 100%" :data-src='require("@/assets/stock-photo-237223627.jpg")'/>
     <p class="article-preview">
       我和大家一样，打算在知乎上找一个有“格调”的jekyll的模板，嗯，
       找到这个帖子知乎——有哪些简洁明快的 Jekyll 模板？。看到了一

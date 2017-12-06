@@ -26,7 +26,7 @@ export function getEle(ele) {
  */
 export function getStyle(ele, key) {
   ele = getEle(ele);
-  if (ele.style && ele.style[key]) return ele.style.backgroundColor;     //形内样式
+  if (ele.style && ele.style[key]) return ele.style[key];     //形内样式
   let eleStyle = window.getComputedStyle ? window.getComputedStyle(ele) : ele.currentStyle;
   return eleStyle ? eleStyle[key] : false;
 }
@@ -77,7 +77,7 @@ function getDistance(ele, position) {
   ele = getEle(ele);
   position = position.replace(position.charAt(0), position.charAt(0).toUpperCase());
 
-  let distanceKey = 'offset' +position;
+  let distanceKey = 'offset' + position;
   let current = ele.offsetParent;
 
   let distance = getEle(ele)[distanceKey];
@@ -125,7 +125,7 @@ export function absolutePosition(ele) {
 
 
 export function getReTop(ele) {
-  if(document.compatMode == 'BackCompat') {
+  if(document.compatMode !== 'BackCompat') {
     return getAbTop(ele) - document.body.scrollTop;
   } else {
     return getAbTop(ele) - document.documentElement.scrollTop;
@@ -133,7 +133,7 @@ export function getReTop(ele) {
 }
 
 export function getReLeft(ele) {
-  if(document.compatMode == 'BackCompat') {
+  if(document.compatMode !== 'BackCompat') {
     return getAbLeft(ele) - document.body.scrollLeft;
   } else {
     return getAbLeft(ele) - document.documentElement.scrollLeft;
