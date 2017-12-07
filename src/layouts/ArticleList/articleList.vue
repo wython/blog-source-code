@@ -13,6 +13,9 @@
     components: {
         ArticleItem
     },
+    updated() {
+      console.log('updated')
+    },
     mounted() {
       new Lazy(this.$refs.articleList, {
         miniSrc: (src) => {

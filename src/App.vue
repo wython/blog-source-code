@@ -21,7 +21,7 @@
     name: 'app',
     data() {
       return {
-          show: true
+        show: true
       }
     },
     mounted() {
