@@ -1,22 +1,20 @@
 <template>
   <div class="home">
-    <Ripple :loading="loading" class="my-rapple"/>
-    <button @click="handleLoading">
-      loading
-    </button>
+    <ArticleList/>
   </div>
 </template>
 
 <script>
-  import Ripple from '@/components/ripple'
+  import ArticleList from '@/layouts/ArticleList'
+
   export default {
     name: 'Home',
     components: {
-      Ripple
+      ArticleList
     },
     data() {
       return {
-          loading: false
+        loading: false
       }
     },
     methods: {
@@ -29,10 +27,8 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
   .home {
+    max-width: 900px;
+    margin: auto;
+  }
 
-  }
-  .my-rapple{
-    width: 50px;
-    height: 50px;
-  }
 </style>

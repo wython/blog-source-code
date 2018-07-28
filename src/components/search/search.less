@@ -1,0 +1,35 @@
+@import "../customer";
+
+
+@search-prefix-cls: ~"@{css-prefix}-search";
+
+.@{search-prefix-cls} {
+  width: 20px;
+  display: flex;
+  transition: width 0.1s ease-in;
+  overflow: hidden;
+  align-items: center;
+}
+.@{search-prefix-cls}.@{search-prefix-cls}-open {
+  width: 180px;
+}
+
+.@{search-prefix-cls} input {
+  border: none;
+  outline: none;
+  height: 18px;
+  padding-left: 10px;
+  color: #595959;
+}
+
+
+.@{search-prefix-cls} .search-icon{
+  border: #ddd;
+  border-radius: 100%;
+}
+
+.@{search-prefix-cls} .search-icon:before {
+  color: #777;
+  font-size: 20px;
+  content: "\e986";
+}
