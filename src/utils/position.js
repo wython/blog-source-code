@@ -1,11 +1,10 @@
 /**
- *
- *
  * Created by wython on 2017/11/22.
  */
 
 
 /**
+ * check element
  * 判断ele
  * @param ele
  * @return {*}
@@ -18,7 +17,7 @@ export function getEle(ele) {
 
 
 /**
- *
+ * get element style by js
  * 通过js获取元素样式
  *
  * @param ele
@@ -27,7 +26,7 @@ export function getEle(ele) {
  */
 export function getStyle(ele, key) {
   ele = getEle(ele);
-  if (ele.style && ele.style[key]) return ele.style.backgroundColor;
+  if (ele.style && ele.style[key]) return ele.style[key];     //形内样式
   let eleStyle = window.getComputedStyle ? window.getComputedStyle(ele) : ele.currentStyle;
   return eleStyle ? eleStyle[key] : false;
 }
@@ -35,10 +34,11 @@ export function getStyle(ele, key) {
 
 /**
  *
- *
+ * get Element background color, first, get the style inline,
+ * and then, get thought computed style
  * 获取元素的背景颜色，先获取行内元素，在获取计算样式
  *
- * @param ele {DomElement|String}
+ * @param ele {Element|String}
  * @return {String|Boolean}
  */
 export function getBg(ele) {
@@ -48,7 +48,7 @@ export function getBg(ele) {
 
 /**
  *
- *
+ * computed the element view port
  * 获取页面可视区域大小
  * @return {{width: number, height: number}}
  */
@@ -94,7 +94,7 @@ function getDistance(ele, position) {
  * @param ele
  * @return {*}
  */
-function getAbLeft(ele) {
+export function getAbLeft(ele) {
   return getDistance(ele, 'Left')
 }
 
@@ -103,7 +103,7 @@ function getAbLeft(ele) {
  * @param ele
  * @return {*}
  */
-function getAbTop(ele) {
+export function getAbTop(ele) {
   return getDistance(ele, 'Top')
 }
 
@@ -115,17 +115,17 @@ function getAbTop(ele) {
  * @return {{top: *, left: *}}
  */
 export function absolutePosition(ele) {
-  let quick = this.getBoundingClientRect();
+  let quick = ele.getBoundingClientRect();
 
   return {
     top: quick ? quick.top : getAbTop(ele),
-    left:quick ? quick.left : getAbLeft(ele)
+    left: quick ? quick.left : getAbLeft(ele)
   }
 }
 
 
 export function getReTop(ele) {
-  if(document.compatMode == 'BackCompat') {
+  if(document.compatMode !== 'BackCompat') {
     return getAbTop(ele) - document.body.scrollTop;
   } else {
     return getAbTop(ele) - document.documentElement.scrollTop;
@@ -133,7 +133,7 @@ export function getReTop(ele) {
 }
 
 export function getReLeft(ele) {
-  if(document.compatMode == 'BackCompat') {
+  if(document.compatMode !== 'BackCompat') {
     return getAbLeft(ele) - document.body.scrollLeft;
   } else {
     return getAbLeft(ele) - document.documentElement.scrollLeft;

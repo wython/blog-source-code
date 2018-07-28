@@ -5,7 +5,7 @@
         <Ripple :loading="loading" class="header-ripple">
           <div class="ripple-content">E</div>
         </Ripple>
-        <h3>wython</h3>
+        <h3 class="icon">wython</h3>
       </div>
       <div class="nav-menu">
         <Search class="blog-search" placeholder="search something...."/>
@@ -14,13 +14,13 @@
         <span :class="['icon', 'mini-button', { 'close': showMiniMenu }]" @click="openMiniMenu"></span>
         <ul class="big-menu">
           <li>
-            <router-link to="/" class="icon">HOME</router-link>
+            <router-link to="/" class="icon" exact>HOME</router-link>
           </li>
           <li>
-            <router-link to="/his" class="icon">HISTORY</router-link>
+            <router-link to="/archive" class="icon">ARCHIVE</router-link>
           </li>
           <li>
-            <router-link to="/his" class="icon">TAGS</router-link>
+            <router-link to="/tags" class="icon">TAGS</router-link>
           </li>
           <li>
             <router-link to="/about" class="icon">ABOUT</router-link>
@@ -28,13 +28,13 @@
         </ul>
         <ul :class="['mini-menu', { 'close': showMiniMenu }]">
           <li>
-            <router-link to="/" class="icon">HOME</router-link>
+            <router-link to="/" class="icon" exact>HOME</router-link>
           </li>
           <li>
-            <router-link to="/his" class="icon">HISTORY</router-link>
+            <router-link to="/archive" class="icon">HISTORY</router-link>
           </li>
           <li>
-            <router-link to="/his" class="icon">TAGS</router-link>
+            <router-link to="/tags" class="icon">TAGS</router-link>
           </li>
           <li>
             <router-link to="/about" class="icon">ABOUT</router-link>
@@ -201,6 +201,7 @@
         display: flex;
         align-items: center;
         h3{
+          font-size: 23px;
           display: inline;
           margin-left: 10px;
         }
