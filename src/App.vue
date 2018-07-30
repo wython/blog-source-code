@@ -8,15 +8,14 @@
         </transition>
       </div>
     </div>
-    <header style="width: 100%;display: flex;align-items: center;justify-content: center">
+    <footer style="width: 100%;display: flex;align-items: center;justify-content: center">
       &copy;2017 - 2017 | <span style="color: #595959;font-size: 12px">纯手工，不添加任何防腐剂</span>
-    </header>
+    </footer>
   </div>
 </template>
 
 <script>
   import BlogHeader from '@/layouts/header';
-
   export default {
     name: 'app',
     data() {
@@ -27,7 +26,6 @@
     mounted() {
 
     },
-
     components: {
       BlogHeader
     }

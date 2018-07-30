@@ -2,11 +2,16 @@
   <div ref="articleList" class="article-list-wrapper">
     <ArticleItem/>
     <ArticleItem/>
+    <ArticleItem/>
+    <ArticleItem/>
+
+    </div>
   </div>
 </template>
 <script>
   import ArticleItem from './ArticleItem';
   import Lazy from '@/utils/lazyImage/index';
+  import Drag from '@/utils/drag';
 
   export default {
     name: 'articleList',
@@ -29,5 +34,10 @@
   .article-list-wrapper {
     width: 80%;
     margin: auto;
+  }
+  .move-div {
+    width: 50px;
+    height: 50px;
+    background: #cccccc;
   }
 </style>

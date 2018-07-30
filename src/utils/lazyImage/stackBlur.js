@@ -38,7 +38,6 @@
  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
 var mul_table = [
   512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,
   454,405,364,328,298,271,496,456,420,388,360,335,312,292,273,512,
@@ -151,7 +150,6 @@ function processCanvasRGBA(canvas, top_x, top_y, width, height, radius)
 function processImageDataRGBA(imageData, top_x, top_y, width, height, radius)
 {
   var pixels = imageData.data;
-
   var x, y, i, p, yp, yi, yw, r_sum, g_sum, b_sum, a_sum,
     r_out_sum, g_out_sum, b_out_sum, a_out_sum,
     r_in_sum, g_in_sum, b_in_sum, a_in_sum,
@@ -397,7 +395,6 @@ function processCanvasRGB(canvas, top_x, top_y, width, height, radius)
 function processImageDataRGB(imageData, top_x, top_y, width, height, radius)
 {
   var pixels = imageData.data;
-
   var x, y, i, p, yp, yi, yw, r_sum, g_sum, b_sum,
     r_out_sum, g_out_sum, b_out_sum,
     r_in_sum, g_in_sum, b_in_sum,

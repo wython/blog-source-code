@@ -5,14 +5,14 @@ import * as position from '../position';
 import './style.less';
 
 
-const StackBlur = require('stackblur-canvas');
+const StackBlur = require('./stackBlur');
 
 /**
  * 节流函数
  * @param fn
  * @param delay
  */
-function throttle(fn, delay = 500) {
+function throttle(fn, delay = 50) {
   let timeoutId = null;
   return () => {
     if(timeoutId) {
@@ -22,9 +22,7 @@ function throttle(fn, delay = 500) {
   };
 }
 /**
- *
  * opt = { glass, miniSrc = (src) => { return '' },   }
- *
  */
 export default class LazyImage {
   constructor(target, opt) {
@@ -37,6 +35,8 @@ export default class LazyImage {
 
   start = () => {
     this.opt.miniSrc && this.opt.glass && this.insertCanvas();
+
+
     window.addEventListener('scroll', throttle(this.bindScroll.bind(this)));
   };
 
@@ -44,9 +44,13 @@ export default class LazyImage {
     this.loadImages();
   };
 
+  // 判断是否,加载原图
   loadImages = () => {
     this.images.forEach(img => {
-      if(position.getReTop(img) < document.body.clientHeight) {
+      let imgRegPos = position.getReTop(img);
+
+      // 判断是否进入视野
+      if(imgRegPos < (document.body.clientHeight - 200) && (imgRegPos + img.width) > 0) {
         img.src = img.dataset.src;
 
         img.onload = () => {
@@ -56,14 +60,13 @@ export default class LazyImage {
     });
   };
 
-
   clear = () => {
     window.removeEventListener('scroll', this.bindScroll);
   };
 
 
   insertCanvas = () => {
-    this.images.forEach((img) => {
+    this.images.forEach(img => {
       img.classList.add('original-bg');
       // 预加载缩略图
       let miniImg = new Image;
@@ -72,8 +75,6 @@ export default class LazyImage {
 
       let canvasWidth  = img.clientWidth  || img.dataset.width || 1000;
       let canvasHeight = img.clientHeight || img.dataset.height;
-
-
 
       miniImg.onload = () => {
         if(!canvasHeight) {
@@ -85,13 +86,12 @@ export default class LazyImage {
           img.width = canvasWidth;
           img.height = canvasHeight;
         }
-        StackBlur.image(miniImg, canvas, 25);
+        StackBlur.image(miniImg, canvas, 50);
 
         // 定义canvas位置与img重合
         canvas.style.width = canvasWidth + 'px';
         canvas.style.height = canvasHeight + 'px';
 
-        console.log(img.offsetLeft);
         setTimeout(() => {
           parentNode.insertBefore(canvas, img);
           canvas.style.position = 'absolute';

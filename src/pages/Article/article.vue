@@ -14,7 +14,6 @@
       <code>
         var a = 1;
         var b = 2;
-
         function c() {
           console.log(b);
         }
