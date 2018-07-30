@@ -65,45 +65,67 @@ export default class LazyImage {
   };
 
 
+  getImageWidth = (img, parentNode) => {
+    console.log('--------', img.naturalWidth)
+    if(img.style.width) {
+      if(img.style.width.indexOf('%') + 1) {
+        // 百分比
+        return (parentNode.style.width || parentNode.clientWidth) * parseInt(img.style.width) / 100;
+      } else {
+        return img.style.width
+      }
+    } else {
+      return (newImage.clientWidth || newImage.dataset.width || 1000)
+    }
+  }
+
   insertCanvas = () => {
-    this.images.forEach(img => {
-      img.classList.add('original-bg');
+    this.images = this.images.map(img => {
+      // img.classList.add('original-bg');
       // 预加载缩略图
       let miniImg = new Image;
       let parentNode = img.parentNode;
       let canvas = document.createElement('canvas');
-
-      let canvasWidth  = img.clientWidth  || img.dataset.width || 1000;
-      let canvasHeight = img.clientHeight || img.dataset.height;
+      
+      const newImage = img.cloneNode(true); // true 完全克隆
+      const newDiv = document.createElement('div');
+      newDiv.classList.add('lazy-image-wrapper')
+      newDiv.appendChild(newImage);
+      newDiv.appendChild(canvas);
+      
+      let canvasWidth  = this.getImageWidth(newImage, parentNode);
+      console.log('canvasWidth', canvasWidth, newImage.clientWidth, newImage.style.width)
+      let canvasHeight = newImage.clientHeight || newImage.dataset.height;
 
       miniImg.onload = () => {
         if(!canvasHeight) {
           canvasHeight = canvasWidth * miniImg.height / miniImg.width;
           // init original image width and height if not
           // 初始化原始图片高宽, 如果没有的话。
-          img.style.width = canvasWidth + 'px';
-          img.style.height = canvasHeight + 'px';
-          img.width = canvasWidth;
-          img.height = canvasHeight;
+          newImage.style.width = canvasWidth + 'px';
+          newImage.style.height = canvasHeight + 'px';
+          newImage.width = canvasWidth;
+          newImage.height = canvasHeight;
         }
         StackBlur.image(miniImg, canvas, 50);
 
         // 定义canvas位置与img重合
-        canvas.style.width = canvasWidth + 'px';
-        canvas.style.height = canvasHeight + 'px';
+        // canvas.style.width = canvasWidth + 'px';
+        // canvas.style.height = canvasHeight + 'px';
 
-        setTimeout(() => {
-          parentNode.insertBefore(canvas, img);
-          canvas.style.position = 'absolute';
-          canvas.style.top  = img.offsetTop + 'px';
-          canvas.style.left = img.offsetLeft + 'px';
-        });
-
-        img.canvas = canvas;
-        canvas.classList.add('stack-blur-canvas-transition');
+      
+        // parentNode.insertBefore(canvas, img);
+        // canvas.style.position = 'absolute';
+        // canvas.style.top  = img.offsetTop + 'px';
+        // canvas.style.left = img.offsetLeft + 'px';
+        newImage.canvas = canvas;
+        canvas.classList.add('stack-blur-canvas-transition');     
+        parentNode.replaceChild(newDiv, img);
+        
+          
       };
-
-      miniImg.src = this.opt.miniSrc(img.dataset.src || img.src);
+      miniImg.src = this.opt.miniSrc(newImage.dataset.src || newImage.src);
+      return newImage;
     });
   };
 }
