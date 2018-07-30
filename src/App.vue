@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div style="min-height: 100%">
+    <div id="scroll" style="min-height: 100%">
       <BlogHeader />
       <div class="app-content">
         <transition name="slide-fade">

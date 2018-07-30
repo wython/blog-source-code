@@ -14,11 +14,11 @@ const StackBlur = require('./stackBlur');
  */
 function throttle(fn, delay = 50) {
   let timeoutId = null;
-  return () => {
+  return e => {
     if(timeoutId) {
       clearTimeout(timeoutId);
     }
-    timeoutId = setTimeout(fn, delay);
+    timeoutId = setTimeout(() => { fn && fn(e) }, delay);
   };
 }
 /**
@@ -40,17 +40,21 @@ export default class LazyImage {
     window.addEventListener('scroll', throttle(this.bindScroll.bind(this)));
   };
 
-  bindScroll = () => {
-    this.loadImages();
+  bindScroll = e => {
+    this.loadImages(e);
   };
 
   // 判断是否,加载原图
-  loadImages = () => {
+  loadImages = (e) => {
     this.images.forEach(img => {
       let imgRegPos = position.getReTop(img);
+      const doc = document.documentElement || document.body;
+      const docTop = doc.scrollTop;
+      const docClientHeight = doc.clientHeight;
 
-      // 判断是否进入视野
-      if(imgRegPos < (document.body.clientHeight - 200) && (imgRegPos + img.width) > 0) {
+      console.log('--', docTop + (docClientHeight * 2 / 3) - imgRegPos)
+      // 判断是否进入视野, 图片进入当前视图的1/3之后开始懒加载
+      if((docTop + (docClientHeight * 2 / 3) - imgRegPos) > 0) {
         img.src = img.dataset.src;
 
         img.onload = () => {
@@ -66,7 +70,6 @@ export default class LazyImage {
 
 
   getImageWidth = (img, parentNode) => {
-    console.log('--------', img.naturalWidth)
     if(img.style.width) {
       if(img.style.width.indexOf('%') + 1) {
         // 百分比
@@ -94,7 +97,7 @@ export default class LazyImage {
       newDiv.appendChild(canvas);
       
       let canvasWidth  = this.getImageWidth(newImage, parentNode);
-      console.log('canvasWidth', canvasWidth, newImage.clientWidth, newImage.style.width)
+
       let canvasHeight = newImage.clientHeight || newImage.dataset.height;
 
       miniImg.onload = () => {
@@ -110,8 +113,8 @@ export default class LazyImage {
         StackBlur.image(miniImg, canvas, 50);
 
         // 定义canvas位置与img重合
-        // canvas.style.width = canvasWidth + 'px';
-        // canvas.style.height = canvasHeight + 'px';
+        canvas.style.width = canvasWidth + 'px';
+        canvas.style.height = canvasHeight + 'px';
 
       
         // parentNode.insertBefore(canvas, img);
@@ -119,6 +122,7 @@ export default class LazyImage {
         // canvas.style.top  = img.offsetTop + 'px';
         // canvas.style.left = img.offsetLeft + 'px';
         newImage.canvas = canvas;
+
         canvas.classList.add('stack-blur-canvas-transition');     
         parentNode.replaceChild(newDiv, img);
         
