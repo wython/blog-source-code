@@ -1,11 +1,6 @@
 <template>
   <div ref="articleList" class="article-list-wrapper">
-    <ArticleItem/>
-    <ArticleItem/>
-    <ArticleItem/>
-    <ArticleItem/>
-
-    </div>
+    <ArticleItem v-for="blog in blogs" :key="blog.id"/>
   </div>
 </template>
 <script>
@@ -21,12 +16,21 @@
     updated() {
       console.log('updated')
     },
+    computed: {
+      blogs() {
+        console.log('blogs', this.$store.state)
+        return this.$store.state.blog.value
+      }
+    },
     mounted() {
       new Lazy(this.$refs.articleList, {
         miniSrc: (src) => {
           return src;
         }
       }).start();
+
+      this.$store.dispatch('getBlogs', { currentPage: 1 })
+      console.log('store', this.$store.state)
     }
   }
 </script>
