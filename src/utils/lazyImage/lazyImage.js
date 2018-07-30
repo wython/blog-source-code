@@ -78,7 +78,7 @@ export default class LazyImage {
         return img.style.width
       }
     } else {
-      return (newImage.clientWidth || newImage.dataset.width || 1000)
+      return (img.clientWidth || img.dataset.width || 1000)
     }
   }
 

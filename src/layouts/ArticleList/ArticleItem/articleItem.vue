@@ -1,21 +1,13 @@
 <template>
   <article class="article-item">
     <h2>
-      如何最好的使用javascript
+      {{ blog.title }}
     </h2>
     <p class="article-mess">
-      <span class="date-line">Sep 24, 2017 | <span class="icon eye"></span> 阅读数 1230</span>
+      <span class="date-line">{{moment.duration(Date.now() - Date.parse(new Date(blog.created_at))).humanize(true)}} | <span class="icon eye"></span> 阅读数 1230</span>
     </p>
-    <img class="ss" style="width: 100%" :data-src='require("@/assets/stock-photo-237223627.jpg")' />
-    <p class="article-preview">
-      我和大家一样，打算在知乎上找一个有“格调”的jekyll的模板，嗯，
-      找到这个帖子知乎——有哪些简洁明快的 Jekyll 模板？。看到了一
-      些同学的推荐，cellier这个博客样式。真的漂亮！但没有找到
-      cellier同学的博客源码，于是我使用Bootstrap来实现了一把。
-      使用Bootstrap没有其它理由，纯是因为我只听过她。好吧，谁叫我
-      是个后端程序员呢！
-      现在这个主题已经做成一个基于jekyll模板进行开源，这里是地址：github-simplist-jekyll-template，希望各位喜欢...
-    </p>
+    <div id='marked-view' class="article-marked-box" v-html="mark(blog.body)">
+    </div>
     <p>
       <Tag>JavaScript</Tag>
     </p>
@@ -27,9 +19,22 @@
 </template>
 <script>
   import Tag from '@/components/Tag';
+  import moment from 'moment';
+  import mark from 'marked';
   export default {
     components: {
       Tag
+    },
+    props: {
+      blog: {
+        type: Object
+      }
+    },
+    data() {
+      return {
+        moment,
+        mark
+      }
     },
     mounted() {
 
@@ -46,7 +51,7 @@
       font-weight: 100;
       font-size: 14px;
     .date-line {
-
+      text-transform: capitalize;
     }
     .eye:before {
       content: '\e9ce';
@@ -80,6 +85,9 @@
     text-align: center;
     padding: 10px 0 2px;
     margin: 20px;
+  }
+  .article-marked-box img{
+    width: 100%;
   }
   }
 </style>

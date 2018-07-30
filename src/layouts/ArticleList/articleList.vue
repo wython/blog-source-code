@@ -1,6 +1,6 @@
 <template>
   <div ref="articleList" class="article-list-wrapper">
-    <ArticleItem v-for="blog in blogs" :key="blog.id"/>
+    <ArticleItem v-for="blog in blogs" :blog="blog" :key="blog.id"/>
   </div>
 </template>
 <script>
@@ -14,11 +14,14 @@
         ArticleItem
     },
     updated() {
-      console.log('updated')
+      new Lazy(this.$refs.articleList, {
+        miniSrc: (src) => {
+          return src;
+        }
+      }).start();
     },
     computed: {
       blogs() {
-        console.log('blogs', this.$store.state)
         return this.$store.state.blog.value
       }
     },
@@ -30,8 +33,7 @@
       }).start();
 
       this.$store.dispatch('getBlogs', { currentPage: 1 })
-      console.log('store', this.$store.state)
-    }
+    },
   }
 </script>
 <style scope lang="less">
