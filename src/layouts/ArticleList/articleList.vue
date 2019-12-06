@@ -1,6 +1,7 @@
 <template>
   <div ref="articleList" class="article-list-wrapper">
-    <ArticleItem v-for="blog in blogs" :blog="blog" :key="blog.id"/>
+    <ArticleItem v-for="(blog, index) in blogs" :blog="blog" :index="index" :key="blog.id"/>
+    <div v-if="!blogs.length" class="loader"></div>
   </div>
 </template>
 <script>
@@ -31,8 +32,6 @@
           return src;
         }
       }).start();
-
-      this.$store.dispatch('getBlogs', { currentPage: 1 })
     },
   }
 </script>

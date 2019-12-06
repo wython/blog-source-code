@@ -1,5 +1,8 @@
 <template>
-  <a class="age-tag icon" :style="tagStyle">
+  <router-link v-if="src" :to="src" class="age-tag icon" :style="tagStyle">
+    <slot></slot>
+  </router-link>
+  <a v-else class="age-tag icon" :style="tagStyle">
     <slot></slot>
   </a>
 </template>
@@ -8,13 +11,20 @@
   export default {
     name: 'tag',
     props: {
-      src: String
+      src: String,
+      color: String,
     },
     computed: {
       tagStyle() {
-        return {
-          cursor: this.src ? 'point' : 'default'
-      }
+        const color = {
+           cursor: this.src ? 'pointer' : 'default',
+        };
+        if (this.color) {
+          color['background-color'] = `#${this.color}`;
+          color['border-color'] = `#${this.color}`;
+        }
+        
+        return color
       }
     }
   }

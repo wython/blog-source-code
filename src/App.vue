@@ -23,8 +23,10 @@
         show: true
       }
     },
-    mounted() {
+    beforeMount() {
+        const { dispatch } = this.$store;
 
+        dispatch('getLabels');
     },
     components: {
       BlogHeader
@@ -33,6 +35,7 @@
 </script>
 
 <style lang="less">
+  @import './css/code.less';
   #app {
     height: 100%;
   }
@@ -161,7 +164,8 @@
   pre {
       font-family: Consolas, Monaco, Andale Mono, monospace;
       line-height: 1.7em;
-      overflow: auto;
+      word-wrap: break-word;
+      word-break: break-all;
       padding: 6px 10px;
       border-left: 5px solid #6CE26C;
   }
@@ -169,16 +173,17 @@
   pre > code {
       font-family: Consolas, Monaco, Andale Mono, monospace;
       border: 0;
-      display: inline;
-      max-width: initial;
+      display: inline-block;
+      width: 100%;
       padding: 0;
       margin: 0;
       overflow: initial;
       line-height: 1.6em;
       font-size: .95em;
-      white-space: pre;
+      word-wrap: break-word;
+      word-break: break-all;
+      white-space: pre-wrap;
       background: 0 0;
-
   }
 
   code {

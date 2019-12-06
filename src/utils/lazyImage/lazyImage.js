@@ -52,7 +52,6 @@ export default class LazyImage {
       const docTop = doc.scrollTop;
       const docClientHeight = doc.clientHeight;
 
-      console.log('--', docTop + (docClientHeight * 2 / 3) - imgRegPos)
       // 判断是否进入视野, 图片进入当前视图的1/3之后开始懒加载
       if((docTop + (docClientHeight * 2 / 3) - imgRegPos) > 0) {
         img.src = img.dataset.src;

@@ -1,18 +1,22 @@
 <template>
   <article class="article-item">
     <h2>
-      {{ blog.title }}
+      <router-link :to="`/article/${blog.number}`">
+        {{ blog.title }}
+      </router-link>
     </h2>
     <p class="article-mess">
-      <span class="date-line">{{moment.duration(Date.now() - Date.parse(new Date(blog.created_at))).humanize(true)}} | <span class="icon eye"></span> 阅读数 1230</span>
+      <span class="date-line">{{moment.duration(Date.now() - Date.parse(new Date(blog.created_at))).humanize(true)}} | <span class="icon eye"></span> 评论数 {{blog.comments}}</span>
     </p>
-    <div id='marked-view' class="article-marked-box" v-html="mark(blog.body)">
+    <div id='marked-view' class="article-marked-box overflow" v-html="mark(blog.body)">
     </div>
     <p>
-      <Tag>JavaScript</Tag>
+      标签：<Tag v-for="tag in blog.labels" :key="tag.id">{{tag.name}}</Tag>
     </p>
     <span class="article-more icon">
-      MORE <span class="icon"></span>
+      <router-link :to="`/article/${blog.number}`">
+        MORE <span class="icon"></span>
+      </router-link>
     </span>
     <span class="bottom-line clear"></span>
   </article>
@@ -28,6 +32,9 @@
     props: {
       blog: {
         type: Object
+      },
+      index: {
+        type: Number
       }
     },
     data() {
@@ -54,7 +61,7 @@
       text-transform: capitalize;
     }
     .eye:before {
-      content: '\e9ce';
+      content: '\e970';
     }
 
   }
@@ -86,8 +93,16 @@
     padding: 10px 0 2px;
     margin: 20px;
   }
-  .article-marked-box img{
-    width: 100%;
-  }
+    .article-marked-box img{
+      width: 100%;
+    }
+    .article-marked-box.overflow {
+      overflow: hidden;
+      margin-bottom: 10px;
+      text-overflow:ellipsis;
+    }
+    #marked-view.article-marked-box {
+      max-height: 300px;
+    }
   }
 </style>

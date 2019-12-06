@@ -1,5 +1,5 @@
 <template>
-  <header id="header">
+  <header id="global-header">
     <nav class="header-nav">
       <div class="header-user">
         <Ripple :loading="loading" class="header-ripple">
@@ -16,9 +16,9 @@
           <li>
             <router-link to="/" class="icon" exact>HOME</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/archive" class="icon">ARCHIVE</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/tags" class="icon">TAGS</router-link>
           </li>
@@ -30,9 +30,9 @@
           <li>
             <router-link to="/" class="icon" exact>HOME</router-link>
           </li>
-          <li>
+          <!-- <li>
             <router-link to="/archive" class="icon">HISTORY</router-link>
-          </li>
+          </li> -->
           <li>
             <router-link to="/tags" class="icon">TAGS</router-link>
           </li>
@@ -49,7 +49,7 @@
   import Search from '@/components/search';
 
   export default {
-    name: 'header',
+    name: 'global-header',
     components: {
       Ripple,
       Search
@@ -73,7 +73,7 @@
 </script>
 <style lang="less">
   @media (max-width: 900px) and (min-width: 668px) {
-    #header {
+    #global-header {
       .blog-search {
         display: none;
       }
@@ -89,7 +89,7 @@
   }
 
   @media (max-width: 668px) {
-    #header {
+    #global-header {
       border-bottom: 1px solid #ddd;
       padding: 0 20px 0 10px!important;
 
@@ -153,7 +153,7 @@
 
   @media (min-width: 900px) {
 
-    #header {
+    #global-header {
       .header-user {
         position: absolute;
         left: 0;
@@ -164,7 +164,7 @@
     }
   }
 
-  #header {
+  #global-header {
     padding: 0 80px 0 40px;
     height: 70px;
     margin-bottom: 20px;

@@ -17,6 +17,9 @@
         loading: false
       }
     },
+    beforeMount() {
+      this.$store.dispatch('getBlogs');
+    },
     methods: {
       handleLoading(e) {
         this.loading = !this.loading

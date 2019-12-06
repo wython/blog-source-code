@@ -7,27 +7,48 @@ import Tags from '@/pages/Tags';
 import About from '@/pages/About';
 import Archive from '@/pages/Archive';
 import Page404 from '@/pages/Page404'
-import Article from '@/pages/Article';
-
+import pArticle from '@/pages/Article';
+import ArticleList from '@/layouts/ArticleList';
+import store from '@/store';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   routes: [
     {
       path: '/',
       name: 'Home',
       component: Home,
     },
-    {
-      path: '/archive',
-      name: 'Archive',
-      component: Archive
-    },
+    // {
+    //   path: '/archive',
+    //   name: 'Archive',
+    //   component: Archive
+    // },
     {
       path: '/tags',
       name: 'Tags',
-      component: Tags
+      component: Tags,
+      children: [
+        {
+          path: ':label',
+          name: 'Label',
+          component: ArticleList,
+          beforeEnter: (to, from, next) => {
+            // ...
+            console.log(to)
+            store.dispatch('clearBlog');
+            store.dispatch('getBlogs', {
+              label: to.params.label
+            })
+            next()
+          },
+          beforeRouteLeave: () => {
+            store.dispatch('clearBlogs');
+            next()
+          }
+        }
+      ]
     },
     {
       path: '/about',
@@ -37,7 +58,7 @@ export default new Router({
     {
       path: '/article/:id',
       name: 'article',
-      component: Article
+      component: pArticle
     },
     {
       path: '*',
